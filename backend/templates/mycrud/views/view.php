@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= "<?= " ?>Html::a(<?= $generator->generateString('删除') ?>, ['delete', <?= $urlParams ?>], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => <?= $generator->generateString('Are you sure you want to delete this item?') ?>,
+                'confirm' => <?= $generator->generateString('确定要删除吗?') ?>,
                 'method' => 'post',
             ],
         ]) ?>
