@@ -206,6 +206,53 @@ class Utils
         $days = ceil(abs($date1 - $date2)/86400); 
         return $days; 
     }
+
+    // 获取内容第一张图片
+    public static function getImgOne($content, $ext = 'jpg|jpeg|gif|png|bmp') {
+        $img = '';
+        preg_match_all("/src=([\"|']?)([^ \"'>]+\.($ext))\\1/i", $content, $matches);
+        if ($matches && isset($matches[2][0])) {
+            $img = $matches[2][0];
+        }
+        return $img;
+    }
+    
+    public static function getThumb($picUrl, $width = 200, $height = 200, $defaultPic = "/statics/images/default.png"){
+        if (($picUrl == "") || !file_exists(Yii::getAlias("@wwwdir"  . $picUrl))) {
+            //所以说原图不能删除
+            $picUrl = $defaultPic;
+        }
+        //echo $picUrl."fffff";die;
+        $pre = '_thumb_';
+        preg_match("/(.*)\.(.*)/", $picUrl, $matches);
+        if(isset($matches[1]) && isset($matches[2])){
+            $thumb = $matches[1].$pre.$width.'x'.$height.'.'.$matches[2];
+            if(file_exists(Yii::getAlias("@wwwdir"  . $thumb))){
+                return $thumb;
+            }else{
+                //生成缩略图
+                $image = \yii\imagine\Image::thumbnail(Yii::getAlias("@wwwdir"  . $picUrl), $width, $height, \Imagine\Image\ManipulatorInterface::THUMBNAIL_OUTBOUND);
+                $image->save(Yii::getAlias("@wwwdir" . $thumb));
+                if(file_exists(Yii::getAlias("@wwwdir"  . $thumb))){
+                    return $thumb;
+                }
+            }
+        }
+        
+        return $picUrl;
+    }
+    
+    protected function getPicName($picUrl){
+        $picName = "";
+        $ptn = "#^/(.*)/(.*)#";
+        preg_match($ptn, $picUrl, $urlarr);
+        if(isset($urlarr[1]) && isset($urlarr[2])){
+            //$defaultName = explode(".",$urlarr[2]);
+            $picName = $urlarr[2];
+        }
+        return $picName;
+    }
+    
 }
 ?>
 

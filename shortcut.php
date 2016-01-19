@@ -47,6 +47,23 @@ Yii::$app->request->referrer;
  */
 Yii::$app->request->csrfToken;
 
+/*
+ * 改动 gridview 按钮组
+ ['class' => 'yii\grid\ActionColumn','template' => '{view} {update}',],
+
+//弹出 筛选提示
+['class' => 'form-control', 'prompt' => Yii::t('app', 'Please Filter')]
+
+//禁用csrf
+public function beforeAction($action)
+{            
+    if ($action->id == 'yuyue') {
+        Yii::$app->controller->enableCsrfValidation = false;
+    }
+
+    return parent::beforeAction($action);
+}
+
 
 ?>
 
@@ -55,6 +72,10 @@ Yii::$app->request->csrfToken;
  */
 <li><span>上一篇：</span><?php if(!$prev){echo "暂无";}else{ ?><a href="<?= Yii::$app->urlManager->createUrl(['news/show','id'=>$prev->id]); ?>"><?= $prev->title; ?></a><?php } ?></li>
 <li><span>下一篇：</span><?php if(!$next){echo "暂无";}else{ ?><a href="<?= Yii::$app->urlManager->createUrl(['news/show','id'=>$next->id]); ?>"><?= $next->title; ?></a><?php } ?></li>
+
+
+
+
 
 /*
  * 在线客服QQ

@@ -9,6 +9,7 @@ use backend\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use yii\web\UploadedFile;
 /**
  * FriendlinkController implements the CRUD actions for Friendlink model.
  */
@@ -64,7 +65,7 @@ class FriendlinkController extends Controller
     }
 
     /**
-     * Creates a new Friendlink model.
+     * Creates a new Slider model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
@@ -72,8 +73,20 @@ class FriendlinkController extends Controller
     {
         $model = new Friendlink();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+
+            if (isset($_FILES) && $_FILES) {
+                $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
+                if($model->imageFile){
+                    $model->upload();
+                }
+            }
+            if($model->ord == ""){
+                $model->ord = 0;
+            }
+            if($model->save()){
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -82,17 +95,26 @@ class FriendlinkController extends Controller
     }
 
     /**
-     * Updates an existing Friendlink model.
+     * Updates an existing Slider model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
+     * @param string $id
      * @return mixed
      */
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        
+        if ($model->load(Yii::$app->request->post())) {
+            
+            if (isset($_FILES) && $_FILES) {
+                $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
+                if($model->imageFile){
+                    $model->upload();
+                }
+            }
+            if($model->save()){
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         } else {
             return $this->render('update', [
                 'model' => $model,

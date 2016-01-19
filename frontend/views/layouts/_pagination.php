@@ -6,15 +6,15 @@
  * Create at 2015-12-24 11:09:43
  */
 ?>
-<div class="fy">
-    <?= \yii\widgets\LinkPager::widget([
-        'pagination' => $pagination,
-        'lastPageLabel'=>'尾页',
-        'firstPageLabel'=>'首页',
-        'prevPageLabel' => '上一页',
-        'nextPageLabel' => '下一页',
+<?=    \common\components\MyLinkPager::widget([
+    'pagination' => $pagination,
+    'lastPageLabel'=>false,
+    'firstPageLabel'=>false,
+    'prevPageLabel' => '上一页',
+    'nextPageLabel' => '下一页',
+    'nextPageCssClass' => '',
+    'prevPageCssClass' => '',
+    'maxButtonCount'=>0,
+    'options'=>['class'=>'page']
 
-    ]) ?>
-
-</div>
-
+]) ?>

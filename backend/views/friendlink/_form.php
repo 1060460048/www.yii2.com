@@ -10,11 +10,13 @@ use yii\widgets\ActiveForm;
 
 <div class="friendlink-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['options' => ['enctype'=>'multipart/form-data']]); ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+    
+    <?= $form->field($model, 'imageFile')->fileInput() ?>
 
-    <?= $form->field($model, 'link')->textInput(['maxlength' => true]) ?>
+    <?php echo $form->field($model, 'link')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'isshow')->dropDownList(['1'=>'显示','0'=>'隐藏']) ?>
 

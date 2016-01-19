@@ -18,6 +18,7 @@ use yii\behaviors\TimestampBehavior;
  */
 class Friendlink extends \yii\db\ActiveRecord
 {
+    public $imageFile;
     /**
      * @inheritdoc
      */
@@ -47,7 +48,9 @@ class Friendlink extends \yii\db\ActiveRecord
             [['name', 'link'], 'required'],
             [['isshow', 'ord'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
-            [['name', 'link'], 'string', 'max' => 100]
+            [['name', 'link','thumb'], 'string', 'max' => 100],
+            [['imageFile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'gif, png, jpg'],
+
         ];
     }
 
@@ -64,6 +67,30 @@ class Friendlink extends \yii\db\ActiveRecord
             'ord' => '排序',
             'created_at' => '添加时间',
             'updated_at' => '修改时间',
+            'imageFile' => '图片',
+            'thumb' => '图片',
         ];
+    }
+    public function upload() {
+        
+        //parent::beforeSave($insert);
+        
+        if ($this->imageFile && $this->validate()) {
+            
+            $Name = \common\components\Utils::fileName(5);
+  
+            $fileName = 'upload/friendlink/' . $Name . '.' .  $this->imageFile->extension;
+
+            $this->imageFile->saveAs(Yii::getAlias("@wwwdir")."/".$fileName);
+            $str = "/".$fileName;
+    
+        } else {
+            $str = '';
+        }
+        
+        $this->thumb = $str;
+        
+        $this->imageFile = null;
+        
     }
 }
