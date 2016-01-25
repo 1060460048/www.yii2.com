@@ -308,7 +308,25 @@ class Category extends \yii\db\ActiveRecord
         }
         return "分类不存在";
     }
-    
+    /*
+     * 获取所属分类的title
+     */
+    static public function getTitle($id){
+        $breadCrumbs = [];
+        $cate = self::findOne($id);
+        if($cate){
+            $breadCrumbs[] = $cate->name;
+            $p = self::findOne($cate->parent_id);
+            if($p){
+                $breadCrumbs[] = $p->name;
+                $f = self::findOne($p->parent_id);;
+                if($f){
+                    $breadCrumbs[] = $f->name;
+                }
+            }
+        }
+        return implode("_",$breadCrumbs);
+    }
     static public function getBreadcrumbs($id,$url,$param){
         $breadCrumbs = [];
         $cate = self::findOne($id);
