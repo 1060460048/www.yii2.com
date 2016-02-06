@@ -49,6 +49,8 @@ Yii::$app->request->csrfToken;
 
 /*
  * 改动 gridview 按钮组
+ */
+
  ['class' => 'yii\grid\ActionColumn','template' => '{view} {update}',],
 
 //弹出 筛选提示
@@ -65,6 +67,9 @@ public function beforeAction($action)
 }
 
 
+//列表页 增加 页码到title
+$currentPage = $pagination->page + 1;
+$this->title = Category::getTitle($cid)."_第".$currentPage."页";
 ?>
 
 /*
@@ -73,7 +78,13 @@ public function beforeAction($action)
 <li><span>上一篇：</span><?php if(!$prev){echo "暂无";}else{ ?><a href="<?= Yii::$app->urlManager->createUrl(['news/show','id'=>$prev->id]); ?>"><?= $prev->title; ?></a><?php } ?></li>
 <li><span>下一篇：</span><?php if(!$next){echo "暂无";}else{ ?><a href="<?= Yii::$app->urlManager->createUrl(['news/show','id'=>$next->id]); ?>"><?= $next->title; ?></a><?php } ?></li>
 
-
+$.each(data,function(index,item){
+    str = str + "产品名：" + item.name + "&nbsp;&nbsp;";
+    str = str + "销售总数：" + item.num + "个&nbsp;&nbsp;";
+    str = str + "销售额：" + item.sum + "元&nbsp;&nbsp;";
+    str = str + "成本：" + item.chengben + "元&nbsp;&nbsp;";
+    str = str + "利润：" + item.lirun + "元<br>";
+});
 
 
 
@@ -82,7 +93,52 @@ public function beforeAction($action)
  *
 /
 http://wpa.qq.com/msgrd?v=3&uin=6232967&site=qq&menu=yes
- 
+
+
+/*
+ *日期时间选择器
+ */
+require kartik-v/yii2-widget-datepicker "@dev"
+    <?= 
+        $form->field($model, 'baomingshijian')->widget(DatePicker::classname(), [
+            'options' => ['placeholder' => '选择报名时间'],
+            'pluginOptions' => [
+                'autoclose' => true,
+                'format' => 'yyyy-mm-dd'
+            ]
+        ]); 
+
+    ?>
+    <?= $form->field($model, 'jiezhishijian')->widget(DatePicker::classname(), [
+            'options' => ['placeholder' => '选择报名时间'],
+            'pluginOptions' => [
+                'autoclose' => true,
+                'format' => 'yyyy-mm-dd'
+            ]
+        ]); 
+    ?>
+
+<?php
+public function beforeSave($insert) {
+        
+    if(parent::beforeSave($insert)){
+        $this->kaoshishijian = strtotime($this->kaoshishijian);
+        $this->baomingshijian = strtotime($this->baomingshijian);
+        $this->jiezhishijian = strtotime($this->jiezhishijian);
+        if(!$this->ord){
+            $this->ord = 100;
+        }
+        return true;
+    }
+}
+
+public function afterFind() {
+    parent::afterFind();
+    $this->kaoshishijian = date('Y-m-d',$this->kaoshishijian);
+    $this->baomingshijian = date('Y-m-d',$this->baomingshijian);
+    $this->jiezhishijian = date('Y-m-d',$this->jiezhishijian);
+}
+
 
 /*
  * 百度地图
@@ -104,3 +160,187 @@ http://wpa.qq.com/msgrd?v=3&uin=6232967&site=qq&menu=yes
 //地图选点
 http://api.map.baidu.com/lbsapi/creatmap/
 
+    <!-- 批量图片上传 view页面 -->
+    <style>
+        .file-preview-thumbnails img{width:120px; height: 120px;}
+    </style>
+    <?php
+        $uploadedImages = $previewConfig = [];
+        if($model->isNewRecord){
+            if(!$itemID = Yii::$app->session->get('item_id')){
+                $itemID = time();
+                Yii::$app->session->set("item_id",$itemID);
+            }
+        }else{
+            $itemID = $model->id;
+            
+            if($model->images){
+                foreach($model->images as $k=>$img){
+                    //echo "<img src='"+$img->image+"'>";
+                    $uploadedImages[$k] = "<img src='".$img->image."'>";
+                    $previewConfig[$k]['caption'] = $img->filename;
+                    $previewConfig[$k]['width'] = "120px";
+                    $previewConfig[$k]['sort_order'] = $img->sort_order;
+                    //$previewConfig[$k]['height'] = "120";
+                    $previewConfig[$k]['url'] = Yii::$app->urlManager->createUrl(['services/remove']);
+                    $previewConfig[$k]['key'] = $img->id;
+                    $previewConfig[$k]['description'] = $img->description?$img->description:"";
+                    $previewConfig[$k]['sort_order'] = $img->sort_order?$img->sort_order:"";
+                    
+                    //$previewConfig[$k]['extra'] = "{id:".$img->id."}";
+                }
+            }
+        }
+    ?>
+    
+    <?= FileInput::widget([
+        'model'=>$model,
+        'options' => ['accept' => 'image/*','multiple'=>true],
+        'pluginOptions' => [
+            'uploadUrl' => Url::to(['/services/uploadimage']),
+            'uploadExtraData' => [
+                'item' => 2,
+                'item_id' => $itemID,
+            ],
+            'maxFileCount' => 10,
+            'initialPreview'=> $uploadedImages,
+            'initialPreviewConfig'=> $previewConfig,
+            'showCaption'=>true,
+        ],
+        
+        'name' => 'imageFiles',
+        //'id'=>'fileUpload',
+        'pluginEvents' => [
+            'filesuccessremove' => "function(event,id) {
+                //alert(event[0]);
+                //console.log(files);
+                //console.log('File batch upload complete');
+            }", 
+            'fileuploaded'=>"function(event,data,previewId, index){
+                //var imgId;
+                //imgId = data.response['imgID'];
+               // alert(imgId);
+                //var previewID = data.previewId;
+                //alert(previewId);
+                //var x = $('#'+previewId+' img').attr('src');
+                //alert(x);
+                //$('<input type=textfffff>').insertAfter('#'+previewId+' img');
+                //alert(data.response['imgID']);
+//                alert(data.extra['id']);
+//                alert(data.extra.id);
+//                alert(data.extra);
+//                for(i in data.response){
+//                   alert(i);           //获得属性 
+//                   alert(data.response[i]);  //获得属性值
+//                }
+            }",
+        ],
+    ]); 
+    ?>
+
+    <!-- 批量上传图片结束 -->
+    <!-- 批量图片 控制器页面 -->
+    use backend\widgets\pic\UploadAction;
+    use backend\widgets\pic\RemoveAction;
+    public function actions()
+    {
+        return [
+            'uploadimage' => [
+                'class' => UploadAction::className(),
+                'upload' => 'upload/images',
+            ],
+            'remove'=>[
+                'class' => RemoveAction::className(),
+                //'upload' => 'upload/images',
+            ]
+        ];
+    }
+    /**
+     * Creates a new Cases model.
+     * If creation is successful, the browser will be redirected to the 'view' page.
+     * @return mixed
+     */
+    public function actionCreate()
+    {
+        $model = new Cases();
+
+        if ($model->load(Yii::$app->request->post())) {
+
+            if (isset($_FILES) && $_FILES) {
+                $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
+                if($model->imageFile){
+                    $model->upload();
+                }
+            }
+            
+            if($model->save()){
+                
+                if($itemID = Yii::$app->session->get("item_id")){
+                    Yii::$app->session->remove("item_id");
+                    \common\models\Images::updateAll(['item_id'=>$model->id], ["item_id"=>$itemID]);
+                }
+                if (isset(Yii::$app->request->post()['intro'])) {
+                    foreach (Yii::$app->request->post()['intro'] as $key => $intro) {
+                        \common\models\Images::updateAll(['description' => $intro], ['id' => $key]);
+                    }
+                }
+                if (isset(Yii::$app->request->post()['sort'])) {
+                    foreach (Yii::$app->request->post()['sort'] as $key => $order) {
+                        \common\models\Images::updateAll(['sort_order' => $order], ['id' => $key]);
+                    }
+                }
+                
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+        } else {
+            return $this->render('create', [
+                'model' => $model,
+            ]);
+        }
+    }
+
+    /**
+     * Updates an existing Cases model.
+     * If update is successful, the browser will be redirected to the 'view' page.
+     * @param string $id
+     * @return mixed
+     */
+    public function actionUpdate($id)
+    {
+        $model = $this->findModel($id);
+
+        if ($model->load(Yii::$app->request->post())) {
+            if (isset($_FILES) && $_FILES) {
+                $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
+                if($model->imageFile){
+                    $model->upload();
+                }
+            }
+            if($model->save()){
+                if (isset(Yii::$app->request->post()['intro'])) {
+                    foreach (Yii::$app->request->post()['intro'] as $key => $intro) {
+                        \common\models\Images::updateAll(['description' => $intro], ['id' => $key]);
+                    }
+                }
+                if (isset(Yii::$app->request->post()['sort'])) {
+                    foreach (Yii::$app->request->post()['sort'] as $key => $order) {
+                        \common\models\Images::updateAll(['sort_order' => $order], ['id' => $key]);
+                    }
+                }
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+        } else {
+            return $this->render('update', [
+                'model' => $model,
+            ]);
+        }
+    }
+
+
+
+    <!-- 批量图片 控制器页面结束 -->
+
+    public function getImages(){
+        return $this->hasMany(Images::className(), ['item_id' => 'id'])->where(['item'=>1])->orderBy(['sort_order' => SORT_ASC]);
+    }
+    <!-- 批量删除图片 模型页面 -->

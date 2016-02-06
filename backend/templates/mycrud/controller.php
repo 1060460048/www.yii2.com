@@ -52,6 +52,7 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['post'],
+                    'delete-multiple' => ['post'],
                 ],
             ],
             'access' => [
@@ -154,6 +155,19 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
     }
 
     /**
+     * 批量删除
+     */
+    public function actionDeleteMultiple(){
+        $pk = Yii::$app->request->post('pk'); // Array or selected records primary keys
+
+        // Preventing extra unnecessary query
+        if (!$pk) {
+            return;
+        }
+
+        return <?= $modelClass ?>::deleteAll(['id' => $pk]);
+    }
+    /**
      * Finds the <?= $modelClass ?> model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * <?= implode("\n     * ", $actionParamComments) . "\n" ?>
@@ -176,7 +190,7 @@ if (count($pks) === 1) {
         if (($model = <?= $modelClass ?>::findOne(<?= $condition ?>)) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
+            throw new NotFoundHttpException('您访问的页面不存在');
         }
     }
 }

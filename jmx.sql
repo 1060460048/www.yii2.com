@@ -270,3 +270,15 @@ INSERT INTO `lmy_slider` (`id`, `place`, `thumb`, `intro`, `url`, `ord`, `update
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+CREATE TABLE IF NOT EXISTS `lmy_images` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `item` int(11) DEFAULT NULL COMMENT '1=服务，2=案例',
+  `item_id` int(11) NOT NULL COMMENT '具体到项目的ID',
+  `filename` varchar(128) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `image` varchar(255) NOT NULL,
+  `thumb` varchar(255) DEFAULT NULL,
+  `sort_order` int(11) DEFAULT '50',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;

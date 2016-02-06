@@ -1,8 +1,6 @@
 <?php
-
 use yii\helpers\Inflector;
 use yii\helpers\StringHelper;
-
 /* @var $this yii\web\View */
 /* @var $generator yii\gii\generators\crud\Generator */
 
@@ -14,7 +12,7 @@ echo "<?php\n";
 
 use yii\helpers\Html;
 use <?= $generator->indexWidgetType === 'grid' ? "yii\\grid\\GridView" : "yii\\widgets\\ListView" ?>;
-
+use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 <?= !empty($generator->searchModelClass) ? "/* @var \$searchModel " . ltrim($generator->searchModelClass, '\\') . " */\n" : '' ?>
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -30,13 +28,17 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= "<?= " ?>Html::a(<?= $generator->generateString('添加', ['modelClass' => Inflector::camel2words(StringHelper::basename($generator->modelClass))]) ?>, ['create'], ['class' => 'btn btn-success']) ?>
+        <input type="button" class="btn btn-info" value="批量删除" id="MyButton" >
     </p>
 
 <?php if ($generator->indexWidgetType === 'grid'): ?>
-    <?= "<?= " ?>GridView::widget([
+    <?= "<?php " ?>
+    Pjax::begin();
+    echo GridView::widget([
         'dataProvider' => $dataProvider,
         <?= !empty($generator->searchModelClass) ? "'filterModel' => \$searchModel,\n        'columns' => [\n" : "'columns' => [\n"; ?>
             //['class' => 'yii\grid\SerialColumn'],
+            ['class' => 'yii\grid\CheckboxColumn'],
 
 <?php
 $count = 0;
@@ -62,7 +64,9 @@ if (($tableSchema = $generator->getTableSchema()) === false) {
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
-    ]); ?>
+    ]); 
+        Pjax::end();
+    ?>
 <?php else: ?>
     <?= "<?= " ?>ListView::widget([
         'dataProvider' => $dataProvider,
@@ -74,3 +78,26 @@ if (($tableSchema = $generator->getTableSchema()) === false) {
 <?php endif; ?>
 
 </div>
+<?php echo "<?php\n"; ?>
+$url = Yii::$app->urlManager->createUrl(['<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)); ?>/delete-multiple']);
+$js = <<< JS
+$(document).ready(function(){
+    $('#MyButton').click(function(){
+        var HotId = $('#w1').yiiGridView('getSelectedRows');
+        alert(HotId);
+        //return false;
+        $.ajax({
+            type: 'POST',
+            url : '{$url}',
+            data : {pk: HotId},
+            success : function() {
+                $.pjax.reload({container:'#w1'});
+              //$(this).closest('tr').remove(); //or whatever html you use for displaying rows
+            }
+        });
+
+    });
+});
+JS;
+$this->registerJs($js, \yii\web\View::POS_READY);
+<?php echo "\n?>" ?>

@@ -60,7 +60,17 @@ class SiteController extends Controller
         return $this->render('singlepage',['model'=>$model]);
     }
     
-    
+    /*
+     * 在线报名
+     */
+    public function actionFeed(){
+        $model = new \common\models\Feedback();
+        if($model->load(Yii::$app->request->post()) && $model->save()){
+            echo "<script>alert('预约信息提交成功！');</script>";
+        }
+        return $this->render('feedback',['model'=>$model]);
+        //return $this->render('feedback');
+    }
 
     /*
      * 查找单页内容
