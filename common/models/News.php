@@ -117,6 +117,21 @@ class News extends \yii\db\ActiveRecord
         return $news;
     }
     /*
+     * 获取某个分类下的推荐信息
+     */
+    static function getRecNews($cid,$num){
+        $allCategory = Category::find()->asArray()->all();
+        $arrayCategoryIdName = \yii\helpers\ArrayHelper::map($allCategory, 'id', 'name');
+        $arrSubCat = Category::getArraySubCatalogId($cid, $allCategory);
+        $where = [
+            'and',
+            ['category_id'=>$arrSubCat],
+            'status>='.Status::STATUS_REC,
+        ];
+        $news = News::find()->where($where)->limit($num)->all();
+        return $news;
+    }
+    /*
      * 缩略图上传
      */
     public function upload() {

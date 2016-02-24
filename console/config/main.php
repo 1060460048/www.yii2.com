@@ -20,6 +20,19 @@ return [
                 ],
             ],
         ],
+        'mailer' => [
+            'class' => 'yii\swiftmailer\Mailer',
+            'useFileTransport' => false,//set this property to false to send mails to real email addresses
+            //comment the following array to send mail using php's mail function
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+                'host' => 'smtp.yeah.net',
+                'username' => 'flyfame@yeah.net',
+                'password' => 'aaa376746856',
+                'port' => '587',
+                'encryption' => 'ssl',
+            ],
+        ],
     ],
     'params' => $params,
 ];

@@ -16,7 +16,7 @@ $this->registerCssFile('@web/statics/layer/layer.js',['depends'=>['frontend\asse
 $js = <<< JS
         
 JS;
-$this->registerJs($js);
+$this->registerJs($js,yii\web\View::POS_END);
 
 /*
  * 获取控制器ID 获取 actionID
@@ -24,7 +24,7 @@ $this->registerJs($js);
 echo Yii::$app->controller->id;
 echo Yii::$app->controller->action->id;
         
-        
+Yii::$app->response->format = Response::FORMAT_JSON;        
 /*
  * 当期位置
  */     
@@ -139,6 +139,84 @@ public function afterFind() {
     $this->jiezhishijian = date('Y-m-d',$this->jiezhishijian);
 }
 
+/*
+ *移动端适配
+ *
+ */
+session_start();
+if(isset($_GET['adapter']) && $_GET['adapter'] == "pc"){
+    $_SESSION['showpc'] = true;
+    
+}elseif(isset ($_SESSION['showpc']) && $_SESSION['showpc']){
+    $_SESSION['showpc'] = true;
+}else{
+    $nowUrl = $_SERVER['SERVER_NAME'].$_SERVER["REQUEST_URI"];
+    if(strpos($nowUrl, "/mobile") == false){
+        $userAgent = strtolower($_SERVER['HTTP_USER_AGENT']);
+        if(stripos($userAgent,"android")!=FALSE||stripos($userAgent,"ios")!=FALSE||stripos($userAgent,"wp")!=FALSE)
+        {
+            header("location:/mobile/"); 
+        }
+    }
+}
+
+/*
+ *ajax post
+ */
+
+$csrf_token = Yii::$app->request->getCsrfToken(); //csrf
+//分页数据
+$.ajax({
+    url: "{$bbsGetReplyUrl}",
+    type: "GET",
+    dataType: "html",
+    success: function(data){
+        $("#comments").html(data);
+    }
+}).fail(function(){
+    alert("Error");
+});
+    
+$('#comments').on('click', '.pagination a', function(e){
+    e.preventDefault();
+    $.ajax({
+        url: $(this).attr('href'),
+        type: "GET",
+        dataType: "html",
+        success: function(data){
+            $('#comments').html(data);
+        }
+    }).fail(function(){
+        alert("Error");
+    });
+
+});
+//发表评论
+function submitReply(content){
+    if(isLogin){
+        $.ajax({
+            url: "{$bbsReplyUrl}",
+            type: "POST",
+            data:{content:content,_csrf:"{$csrf_token}"},
+            dataType: "json",
+            success: function(data){
+                if(data.status == 1){
+                    $("#comments").html(data);
+                    alert("评论发布成功");
+                    window.location.reload();
+                }else{
+                    alert("评论失败");
+                }
+            }
+        });
+    }else{
+        alert("登录用户才能评论");
+    }
+}
+$query = news::find()
+->where('status>='.Status::STATUS_ACTIVE)
+->orderBy(new \yii\db\Expression('rand()'))
+->limit(2)->all();
 
 /*
  * 百度地图
