@@ -28,7 +28,7 @@ return [
                 'class' => 'Swift_SmtpTransport',
                 'host' => 'smtp.yeah.net',
                 'username' => 'flyfame@yeah.net',
-                'password' => 'aaa376746856',
+                'password' => 'aaa',
                 'port' => '587',
                 'encryption' => 'ssl',
             ],
