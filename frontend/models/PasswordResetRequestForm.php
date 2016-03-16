@@ -2,6 +2,7 @@
 namespace frontend\models;
 
 use common\models\User;
+use Yii;
 use yii\base\Model;
 
 /**
@@ -23,7 +24,7 @@ class PasswordResetRequestForm extends Model
             ['email', 'exist',
                 'targetClass' => '\common\models\User',
                 'filter' => ['status' => User::STATUS_ACTIVE],
-                'message' => 'There is no user with such email.'
+                'message' => '邮箱不存在'
             ],
         ];
     }
@@ -41,20 +42,27 @@ class PasswordResetRequestForm extends Model
             'email' => $this->email,
         ]);
 
-        if ($user) {
-            if (!User::isPasswordResetTokenValid($user->password_reset_token)) {
-                $user->generatePasswordResetToken();
-            }
-
-            if ($user->save()) {
-                return \Yii::$app->mailer->compose(['html' => 'passwordResetToken-html', 'text' => 'passwordResetToken-text'], ['user' => $user])
-                    ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->name . ' robot'])
-                    ->setTo($this->email)
-                    ->setSubject('Password reset for ' . \Yii::$app->name)
-                    ->send();
-            }
+        if (!$user) {
+            return false;
+        }
+        
+        if (!User::isPasswordResetTokenValid($user->password_reset_token)) {
+            $user->generatePasswordResetToken();
+        }
+        
+        if (!$user->save()) {
+            return false;
         }
 
-        return false;
+        return Yii::$app
+            ->mailer
+            ->compose(
+                ['html' => 'passwordResetToken-html', 'text' => 'passwordResetToken-text'],
+                ['user' => $user]
+            )
+            ->setFrom(["flyfame@yeah.net" => "简扬教育系统邮件"])
+            ->setTo($this->email)
+            ->setSubject('重置密码 ' . \Yii::$app->name)
+            ->send();
     }
 }

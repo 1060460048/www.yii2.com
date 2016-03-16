@@ -4,7 +4,7 @@ namespace common\models;
 
 use Yii;
 use yii\behaviors\TimestampBehavior;
-//use yii\behaviors\BlameableBehavior;
+use yii\behaviors\BlameableBehavior;
 /**
  * This is the model class for table "{{%video}}".
  *
@@ -34,10 +34,10 @@ class Video extends \yii\db\ActiveRecord
             [
                 'class' => TimestampBehavior::className(),
             ],
-            //[
-            //    'class' => BlameableBehavior::className(),
-            //    'updatedByAttribute' => false,
-            //],
+            [
+                'class' => BlameableBehavior::className(),
+                'updatedByAttribute' => false,
+            ],
         ];
     }
 
@@ -47,15 +47,34 @@ class Video extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'content'], 'required'],
-            [['content'], 'string'],
-            [['status', 'views', 'created_at', 'updated_at'], 'integer'],
-            [['title', 'keyword'], 'string', 'max' => 100],
-            [['thumb'], 'string', 'max' => 120],
+            [['title', 'content','url'], 'required'],
+            [['content','keyword','video'], 'string'],
+            ['url', 'unique', 'targetClass' => '\common\models\Video', 'message' => '网址标记已存在'],
+            [['status', 'views', 'created_at', 'updated_at','downtime','class','course','pinglunnum','star'], 'integer'],
+            [['title'], 'string', 'max' => 250],
+            [['thumb','url'], 'string', 'max' => 120],
             [['author'], 'string', 'max' => 30]
         ];
     }
-
+    public static function types(){
+        return Yii::$app->params['type'];
+    }
+    
+    public static function getType($index,$name){
+        $arr = Yii::$app->params[$name];;
+        if(isset($arr[$index])){
+            return $arr[$index];
+        }else{
+            return "null";
+        }
+    }
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getComments()
+    {
+        return $this->hasMany(Pinglun::className(), ['rid' => 'id'])->where(['type'=>0]);
+    }
     /**
      * @inheritdoc
      */
@@ -63,13 +82,18 @@ class Video extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'url' => '自定义网址',
+            'class' => '年级',
+            'course' => '课程',
             'title' => '标题',
             'thumb' => '缩略图',
-            'keyword' => '关键词',
+            'keyword' => '简介',
+            'video' => '视频',
             'content' => '内容',
             'author' => '作者',
             'status' => '状态',
             'views' => '浏览次数',
+            'downtime' => '下载次数',
             'created_at' => '添加时间',
             'updated_at' => '修改时间',
         ];

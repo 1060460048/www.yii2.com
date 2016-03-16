@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel common\models\FeedbackSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Feedbacks';
+$this->title = '留言管理';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="feedback-index">
@@ -25,14 +25,13 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'type',
+            //'type',
             'name',
             'phone',
             'content:ntext',
-            // 'created_at',
-            // 'updated_at',
-
-            ['class' => 'yii\grid\ActionColumn'],
+            'created_at:datetime',
+            //'updated_at:datetime',
+            ['class' => 'yii\grid\ActionColumn','template' => '{view} {delete}',],
         ],
     ]); ?>
 

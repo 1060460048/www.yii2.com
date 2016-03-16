@@ -19,6 +19,15 @@ class Controller extends \yii\web\Controller
             
             if (!Yii::$app->session->isActive)
                 Yii::$app->session->open();
+            
+            if(Yii::$app->session->hasFlash("key")){
+                $xxxaaa = Yii::$app->session->getFlash("key");
+                if($xxxaaa){
+                    echo "<script>alert('".$xxxaaa."');</script>";
+                }
+                unset($xxxaaa);
+            }
+            
             return true;
         } else {
             return false;

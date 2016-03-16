@@ -18,7 +18,7 @@ class VideoSearch extends Video
     public function rules()
     {
         return [
-            [['id', 'status', 'views', 'created_at', 'updated_at'], 'integer'],
+            [['id', 'status', 'views', 'created_at', 'updated_at','course','class'], 'integer'],
             [['title', 'thumb', 'keyword', 'content', 'author'], 'safe'],
         ];
     }
@@ -59,6 +59,8 @@ class VideoSearch extends Video
             'id' => $this->id,
             'status' => $this->status,
             'views' => $this->views,
+            'course' => $this->course,
+            'class' => $this->class,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ]);

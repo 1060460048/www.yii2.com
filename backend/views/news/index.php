@@ -53,7 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function ($model) {
                     if ($model->status === Status::STATUS_ACTIVE) {
                         $class = 'label-success';
-                    } elseif ($model->status === Status::STATUS_INACTIVE) {
+                    } elseif ($model->status === Status::STATUS_DELETED) {
                         $class = 'label-warning';
                     } else {
                         $class = 'label-danger';

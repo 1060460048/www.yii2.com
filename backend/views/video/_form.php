@@ -21,7 +21,7 @@ var uploader = Qiniu.uploader({
     dragdrop: true,
     chunk_size: '4mb',
     uptoken_url: "/backend/web/video/uptoken",
-    domain: "http://7xpdu5.com1.z0.glb.clouddn.com/",
+    domain: "http://7xrqfk.com1.z0.glb.clouddn.com/",
     get_new_uptoken: false,
     // downtoken_url: '/downtoken',
     // unique_names: true,
@@ -66,7 +66,7 @@ var uploader = Qiniu.uploader({
             var domain = up.getOption('domain');
             var res = $.parseJSON(info);
             var sourceLink = domain + res.key; //获取上传成功后的文件的Url
-            $("#video-content").val(sourceLink);
+            $("#video-video").val(sourceLink);
         },
         'Error': function(up, err, errTip) {
             $('table').show();
@@ -92,9 +92,11 @@ $this->registerJs($js);
 <div class="video-form">
 
     <?php $form = ActiveForm::begin(); ?>
-
+    <?= $form->field($model, 'class')->dropDownList(Yii::$app->params['class']) ?>
+    <?= $form->field($model, 'course')->dropDownList(Yii::$app->params['course']) ?>
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
-
+    <?= $form->field($model, 'url')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'keyword')->textArea(['maxlength' => true]) ?>
     <?= $form->field($model, 'thumb')->textInput(['maxlength' => true])->label('输入数字，如需要第5秒的视频作为封面截图，就输入5'); ?>
 
     <?php //echo $form->field($model, 'keyword')->textInput(['maxlength' => true]) ?>
@@ -123,12 +125,14 @@ $this->registerJs($js);
         </tbody>
     </table>
 </div>
-    <?= $form->field($model, 'content')->hiddenInput()->label(false); ?>
+    <?= $form->field($model, 'video')->hiddenInput()->label(false); ?>
 
+    <?= $form->field($model, 'content')->widget('kucha\ueditor\UEditor',[]); ?>
     <?php //echo $form->field($model, 'author')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'status')->dropDownList(common\models\Status::labels()) ?>
 
+    
     <?= $form->field($model, 'views')->textInput() ?>
 
 

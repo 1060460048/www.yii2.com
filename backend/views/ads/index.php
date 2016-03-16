@@ -25,6 +25,12 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
+            [
+                'attribute'=>'place',
+                'value'=>  function ($model) {
+                    return common\models\Ads::getPlace($model->place);
+                },
+            ],
             'place',
             'thumb',
             'title',

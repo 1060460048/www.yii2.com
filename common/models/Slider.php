@@ -40,7 +40,8 @@ class Slider extends \yii\db\ActiveRecord
      */
     public static function places(){
         return [
-            '首页'
+            '首页',
+            '首页1'
         ];
     }
     

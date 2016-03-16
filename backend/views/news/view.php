@@ -27,7 +27,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'category_id',
+            [
+                'attribute' => 'category_id',
+                'value' => $model->category ? $model->category->name : '-',
+            ],
             'title',
             'thumb',
             'keyword',
@@ -35,9 +38,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'intro:ntext',
             'content:ntext',
             'author',
-            'status',
-            'created_at',
-            'updated_at',
+            [
+                'attribute' => 'status',
+                'value' => \common\models\Status::labels($model->status),
+            ],
+            'created_at:datetime',
+            'updated_at:datetime',
         ],
     ]) ?>
 

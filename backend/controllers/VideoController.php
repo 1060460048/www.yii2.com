@@ -15,6 +15,8 @@ use Qiniu\Auth;
  */
 class VideoController extends Controller
 {
+    
+    
     public function behaviors()
     {
         return [
@@ -35,7 +37,21 @@ class VideoController extends Controller
             ],
         ];
     }
-
+    public function actions()
+    {
+        return [
+            'upload' => [
+                'class' => 'kucha\ueditor\UEditorAction',
+                'config' => [
+                    //"imageUrlPrefix"  => "http://www.baidu.com",//图片访问路径前缀
+                    'allowDivTransToP'=>false,
+                    "imagePathFormat" => "/upload/images/{yyyy}{mm}{dd}/{time}{rand:6}" //上传保存路径
+                ],
+            ]
+        ];
+    }
+    
+    
     /**
      * Lists all Video models.
      * @return mixed
@@ -99,7 +115,19 @@ class VideoController extends Controller
             ]);
         }
     }
+    /**
+     * 批量删除
+     */
+    public function actionDeleteMultiple(){
+        $pk = Yii::$app->request->post('pk'); // Array or selected records primary keys
 
+        // Preventing extra unnecessary query
+        if (!$pk) {
+            return;
+        }
+
+        return Video::deleteAll(['id' => $pk]);
+    }
     /**
      * Deletes an existing Video model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
@@ -135,10 +163,10 @@ class VideoController extends Controller
     public function actionUptoken(){
         header('Content-type: text/json');
         //Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-        $accessKey = 'RDFVgI2CMVHF-79JMXbIFpy9aVz4NJSTXc_wI6u2';
-        $secretKey = 'l8vY4A3juunUVePBdP298RurE4f-xznX93_eT5mN';
+        $accessKey = 'eHpOIEZfVjluFyrGrB33lCRC-dAI7lfLp5aN2ZQN';
+        $secretKey = 'ehOcyV3hABPK9ibF4wbtMf3l1Id_Gfa8bTriG76L';
         $auth = new Auth($accessKey, $secretKey);
-        $bucket = "yubinzaojia";
+        $bucket = "jianyangjiaoyu";
         $token = $auth->uploadToken($bucket);
         $rtn['uptoken'] = $token;
         echo json_encode($rtn);

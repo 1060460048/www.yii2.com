@@ -1,0 +1,134 @@
+@charset "utf-8";
+/* CSS Document */
+.login-header{ height:97px; line-height:97px; border-bottom:1px solid #e7e7e7; background-color:#fff; box-shadow:1px 2px 2px #e7e7e7;}
+.login-header-zt{ width:1200px; margin:0 auto;}
+.login-header-zt-l{ float:left;}
+.login-header-zt-l img{margin-top:20px; float:left;}
+.login-header-zt-l span{ border-left:1px solid #e7e7e7; height:35px; line-height:35px;  width:124px;  margin-left:20px; padding-left:20px; font-size:30px; display:inline-block; margin-top:30px;}
+.login-header-zt a,.login-header-zt a:hover{ float:right; width:147px; height:59px; padding-left:30px;    font-size:18px; background:url(../images/shouye.jpg) no-repeat left bottom ; color:#363636;}
+.login-header-zt a i,.login-header-zt a:hover i{ color:#ff6600; margin-left:2px;}
+.login-body{ height:530px; width:1200px; display:block; background:url(../images/login-bg.jpg)  no-repeat left center; margin:150px 0 250px;}
+.login-body-bd{ border:1px solid #e7e7e7; background-color:#fff; border-top:2px solid #25bd55; width:528px; min-height:410px; float:right; margin-right:82px;}
+.login-body-bd-tit{ height:43px; line-height:43px; text-align:center; font-size:18px; border-bottom:1px solid #e7e7e7; margin-bottom:38px;}
+.login-body-bd .login-zh { margin-left:85px; height:40px; margin-bottom:33px; line-height:40px;}
+.login-body-bd .login-zh .user-text{ width:247px; height:38px; line-height:38px; border:1px solid #dddddd; text-indent:1em; background:url(../images/user.jpg) no-repeat 10px 13px; margin-bottom:23px; margin-left:15px;}
+.login-body-bd .login-mm{ margin-left:85px;}
+.login-body-bd .login-mm .password-text{width:247px; height:38px;line-height:38px; border:1px solid #dddddd; text-indent:1em; background:url(../images/password.jpg) no-repeat 10px 11px; margin-bottom:10px;margin-left:15px;}
+.forget{width:405px;height:38px;line-height:38px; text-align:right;margin-bottom:15px; padding-right:123px; }
+.forget a.xin,.forget a.xin:hover{ color:#ff6600; margin-right:10px;}
+.forget a.wang,.forget a.wang:hover{ color:#777777; margin-left:10px;}
+.c-login{width:528px; text-align:center; }
+.c-login-button{ border:0; width:218px; height:44px; background:#25bd55; color:#fff; font-size:18px;border-radius:2px; font-family:微软雅黑;cursor:pointer;}
+.yzm{ height:40px; margin-left:72px; margin-top:10px;}
+.yzm-text{height:40px; line-height:40px; width:123px; background:url(../images/yzm.jpg) no-repeat 10px 13px;border:1px solid #dddddd;  padding-left:32px; margin-left:15px;}
+.yzm span.yzm-pic{ margin:0 9px 0 15px;}
+/*.login-body-bd .login-zh span{ line-height:40px; float:left; padding-top:5px;}*/
+
+/*注册*/
+.register-header-zt{ width:1200px; margin:0 auto;}
+.register-header-zt-l{ float:left;}
+.register-header-zt-l img{margin-top:20px; float:left;}
+.register-header-zt-l span{ border-left:1px solid #e7e7e7; height:35px; line-height:35px; text-align:center; width:104px; margin-left:20px; font-size:30px; display:inline-block; margin-top:30px;}
+.register-header-zt a,.register-header-zt a:hover{ float:right; width:167px; height:59px; padding-left:30px;    font-size:18px;  color:#363636;}
+.register-header-zt a i,.register-zt a:hover i{ color:#ff6600; margin-left:2px;}
+.register-body-bd{ border:1px solid #e7e7e7; background-color:#fff; border-top:2px solid #25bd55; width:528px; float:right; margin-right:82px;}
+.register-body-bd .login-zh ,.register-body-bd .login-nc{ margin-left:85px; margin-bottom:33px; height:38px;}
+.register-body-bd  .login-zs{margin-left:57px;}
+.register-body-bd .login-zs .user-text{ width:247px; height:38px; line-height:38px; border:1px solid #dddddd; text-indent:1em;  margin-bottom:23px; margin-left:15px;}
+.register-body-bd .login-zh .user-text,.register-body-bd .login-nc .user-text{ width:247px; height:38px; line-height:38px; border:1px solid #dddddd; text-indent:1em;  margin-bottom:23px; margin-left:15px;}
+.register-body-bd .login-mm{ margin-left:85px;}
+.register-body-bd .login-mm .password-text{width:247px; height:38px;line-height:38px; border:1px solid #dddddd; text-indent:1em; background:url(../images/password.jpg) no-repeat 10px 11px; margin-bottom:10px;margin-left:15px;}
+.forget{width:405px;height:38px;line-height:38px; text-align:right;margin-bottom:15px; padding-right:123px; }
+.forget a.xin,.forget a.xin:hover{ color:#ff6600; margin-right:10px;}
+.forget a.wang,.forget a.wang:hover{ color:#777777; margin-left:10px;}
+.c-login{width:528px; text-align:center; padding-bottom: 38px;}
+.c-login-button{ border:0; width:218px; height:44px; background:#25bd55; color:#fff; font-size:18px;border-radius:2px; font-family:微软雅黑;cursor:pointer;}
+.yzm{ height:40px; margin-left:72px; margin-top:10px;}
+.yzm-text{height:40px; line-height:40px; width:123px; background:url(../images/yzm.jpg) no-repeat 10px 13px;border:1px solid #dddddd;  padding-left:32px; margin-left:15px;}
+.yzm .yzm-pic{ margin:0 9px 0 15px; width:60px ;height:20px;}
+.agree{width:528px; text-align:center; height:50px; line-height:50px; margin:20px 0 20px;}
+.agree i{ color:#25bd55;}
+.agree input{ margin-right:5px;}
+.regerror{margin-left: 150px;}
+.register-body-bd .login-zh span ,.register-body-bd .login-nc span,.register-body-bd .login-zs span,.register-body-bd .login-mm span,.register-body-bd .login-zs span,.register-body-bd .yzm span{ float:left; padding-top:10px;}
+
+
+/*找回密码*/
+.find-mail{ margin:95px 0 40px 87px;  height:40px;line-height:40px;}
+.find-mail .user-text{ width:247px; height:38px; line-height:38px; border:1px solid #dddddd; text-indent:1em;  margin-bottom:23px; margin-left:15px;}
+/*用户中心*/
+.wrapper-user-l{ width:277px; border:1px solid #e7e7e7; background-color:#fff; height:805px; margin-top:33px; float:left;}
+.user-l-tit{ height:47px; line-height:47px; font-size:18px;width:277px; text-align:center; color:#fff; background-color:#25bd55;}
+.user-l-tx{ width:257px; padding:25px 0; border-bottom:1px solid #e7e7e7; margin:10px; text-align:center;}
+.user-l-tx img{ width:126px; height:126px; border-radius:63px; display:block; margin-left:65px;*margin-left:10px; margin-bottom:15px;}
+.user-l-tx i{ color:#25bd55; margin-left:5px; font-size:18px;}
+ul.user-l-body{ width:257px;margin:20px 10px;}
+ul.user-l-body li{ float:left; width:257px; height:45px; line-height:45px; font-size:16px; text-align:center;}
+ul.user-l-body li a{ color:#363636;}
+ul.user-l-body li a:hover{ color:#ff6600;}
+ul.user-l-body li a.on,ul.user-l-body li a.on:hover{ color:#ff6600;}
+ul.user-l-body li i{ margin-right:10px;}
+
+
+
+
+.wrapper-user-r{ width:895px; float:right; min-height:900px; height:40px; height:auto !important; margin-top:33px;}
+.user-r-sc{ width:647px; height:226px; background-color:#fff; border:1px solid #e7e7e7; padding:35px 0 0 246px;}
+.user-r-sc img{ width:186px; height:186px; border-radius:93px; margin-right:30px;}
+.user-r-sc a,.user-r-sc a:hover{ width:165px; height:44px; line-height:44px; color:#fff; font-size:18px; background-color:#25bd55; display:inline-block; text-align:center;}
+.user-r-body{ height:525px; width:724px;background-color:#fff; border:1px solid #e7e7e7; padding:65px 0 0 169px;}
+.user-r-yhm{ height:42px; line-height:42px;margin-left:14px;}
+.user-r-yhm .user-r-text{ height:40px; width:260px; line-height:40px; margin-left:15px; border:1px solid #e7e7e7; text-indent:1em;}
+.user-r-xb{height:42px; line-height:42px; margin-left:28px;}
+.user-r-xb label{ margin-left:12px;}
+.user-r-zs .user-r-text{ height:40px; width:260px; line-height:40px; margin-left:15px; border:1px solid #e7e7e7; text-indent:1em;}
+.user-r-yx,.user-r-sj,.user-r-dz{margin-left:28px;height:42px; line-height:42px;}
+.user-r-yx .user-r-text,.user-r-sj .user-r-text{ height:40px; width:260px; line-height:40px; margin-left:15px; border:1px solid #e7e7e7; text-indent:1em;}
+.user-r-dz .user-r-dz-text{height:40px; width:500px; line-height:40px; margin-left:15px; border:1px solid #e7e7e7; text-indent:1em; overflow:hidden;}
+/*.user-r-bcxx{ margin-left:86px;}*/
+.user-r-bcxx .modify{ display: block;text-align: center; width:250px; height:45px; line-height:45px; border:0; background-color:#25bd55; color:#fff; font-size:18px;}
+.user-r-bcxx input{margin-left:86px;width:250px; height:45px; line-height:45px; border:0; background-color:#25bd55; color:#fff; font-size:18px;}
+/*我的课程*/
+.c-classbody{width:893px;background-color:#fff; border:1px solid #e7e7e7; min-height:550px; height:550px; height:auto !important;}
+.c-classbody-tit{ height:50px; line-height:50px; border-bottom:1px solid #e7e7e7; margin:0 15px 0 15px; color:#25bd55; font-size:18px; background:url(../images/img_01.jpg) no-repeat 3px bottom;}
+.c-classbody-tit a,.c-classbody-tit a:hover{ font-size:14px; margin:0 10px 0 40px;}
+ul.c-classbody-body{width:840px;margin-bottom:33px; margin-top:25px; padding-left:15px;}
+ul.c-classbody-body li{ float:left; width:254px; height:200px; margin-left:26px; text-align:center;}
+ul.c-classbody-body li img{ padding:3px;border:1px solid #e7e7e7; margin-bottom:15px; width:247px; height:139px;}
+.pages{ height:30px; margin-top:40px; margin-bottom:35px; text-align:center;}
+.pages a{ height:28px; line-height:28px;  padding:0 10px; border:1px solid #e7e7e7; color:#999999; background-color:#fff; margin:0 12px 0 3px;border-radius:2px; display:inline-block;}
+.pages a:hover{border:1px solid #25bd55; color:#fff; background-color:#25bd55;}
+.pages a.on,.pages a.on:hover{border:1px solid #25bd55; color:#fff; background-color:#25bd55;}
+/*我的评论*/
+.c-discuss{width:863px;background-color:#fff; border:1px solid #e7e7e7; min-height:550px; height:550px; height:auto !important; padding:0 15px}
+.c-discuss-zt{width:863px; min-height:120px; border-bottom:1px solid #e7e7e7; padding-top:23px;overflow:hidden;}
+.c-discuss-zt img{height:92px;  width:92px; margin-top:4px; margin-right:11px; float:left; border-radius:46px;}
+.c-discuss-zt-r{ float:left; width:760px;}
+.c-discuss-zt-mc{ color:#999;height:40px; line-height:40px;}
+.c-discuss-zt-mc span{ margin: 0 10px; color:#25bd55;}
+.c-discuss-zt-sj{color:#999;height:30px; line-height:30px;}
+.c-discuss-zt-nr{height:60px; overflow:hidden;}
+/*修改密码*/
+.paaawordbody{width:678px;background-color:#fff; border:1px solid #e7e7e7; height:510px; padding:150px 0 0 215px}
+.paaawordbody-ymm{ height:42px;line-height:42px; margin-left:14px;}
+.paaawordbody-ymm .ymm-txt{ height:40px; line-height:40px; width:312px; border:1px solid #e7e7e7; margin-left:15px;}
+.paaawordbody-zcsr .ymm-txt{ height:40px; line-height:40px; width:312px; border:1px solid #e7e7e7; margin-left:15px;}
+.paaawordbody-zcsr-xgmm{ margin-left:86px;}
+.paaawordbody-zcsr-xgmm input{ width:250px; height:45px; line-height:45px; border:0; background-color:#25bd55; color:#fff; font-size:18px; border-radius:2px;}
+.gai-password{ margin-left:65px; margin-top:70px;}
+.gai-password-ymm{ height:40px;line-height:40px; margin-left:14px;}
+.gai-password-ymm .ymm-txt{ height:38px; line-height:38px; width:247px; border:1px solid #e7e7e7; margin-left:15px;}
+.gai-password-zcsr .ymm-txt{ height:40px; line-height:40px; width:247px; border:1px solid #e7e7e7; margin-left:15px;}
+.gai-password-zcsr-xgmm{ margin-left:100px;}
+.gai-password-zcsr-xgmm input{ width:218px; height:44px; line-height:44px; border:0; background-color:#25bd55; color:#fff; font-size:18px; border-radius:2px;}
+/*视频管理*/
+.myvideo{ width:833px;background-color:#fff; border:1px solid #e7e7e7; min-height:550px; height:550px; height:auto !important; padding:30px;}
+.myvideo-xz{ height:45px; line-height:45px;}
+.myvideo-xz span{ width:100px; margin-right:15px; text-align:right;  height:45px; line-height:45px; display:inline-block;}
+.myvideo-xz input{ height:43px; width:334px; border:1px solid #e7e7e7; text-indent:1em;}
+.myvideo-xz a,.myvideo-xz a:hover{ width:85px; height:40px; line-height:40px; display:inline-block; background:#ff6600; text-align:center; color:#fff; margin-left:13px;}
+.myvideo-kcts{height:99px; }
+.myvideo-kcts span{ width:100px; margin-right:15px; text-align:right;  height:99px; line-height:99px; display:inline-block; float:left;}
+.myvideo-kcts textarea{ border:1px solid #e7e7e7; width:563px; height:97px;}
+.myvideo-bcxx{ margin:31px 0;width:833px; text-align:center;}
+.myvideo-bcxx input{ width:250px; height:45px; line-height:45px; border:0; background-color:#25bd55; color:#fff; font-size:18px;}

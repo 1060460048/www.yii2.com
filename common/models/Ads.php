@@ -42,11 +42,19 @@ class Ads extends \yii\db\ActiveRecord
             
         ];
     }
-    public function place(){
+    public static function place(){
         return [
             '首页横幅广告1（1170*90）',
             '首页横幅广告2(1170*70)',
         ];
+    }
+    public static function getPlace($k){
+        $places = self::place();
+        if(isset($places[$k])){
+            return $places[$k];
+        }else{
+            return "无";
+        }
     }
 
     /**

@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model common\models\Video */
 
 $this->title = $model->title;
-$this->params['breadcrumbs'][] = ['label' => '视频管理', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => '微课管理', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="video-view">
@@ -27,15 +27,27 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
+            [
+                'attribute'=>'class',
+                'value'=>  \common\models\Labels::getLabel($model->class,"class"),
+            ],
+            [
+                'attribute'=>'course',
+                'value'=>  \common\models\Labels::getLabel($model->course,"course"),
+            ],
             'title',
             'thumb',
             'keyword',
+            'video',
             'content:ntext',
             'author',
-            'status',
+            [
+                'attribute' => 'status',
+                'value' => \common\models\Status::labels($model->status),
+            ],
             'views',
-            'created_at',
-            'updated_at',
+            'created_at:datetime',
+            'updated_at:datetime',
         ],
     ]) ?>
 

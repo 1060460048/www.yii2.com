@@ -19,13 +19,13 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'statics/css/common.css',
-        'statics/css/index.css',
-        'statics/css/style.css',
     ];
     public $js = [
-        //'statics/js/common.js',
+        'statics/js/jquery.select.js',
+        'statics/js/jquery.placeholder.min.js',
+        'statics/js/jMenu.jquery.js',
     ];
     public $depends = [
-        //'frontend\assets\BootstrapAsset',
+        'frontend\assets\JqueryAsset',
     ];
 }

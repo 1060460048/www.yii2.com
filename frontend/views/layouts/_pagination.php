@@ -8,13 +8,13 @@
 ?>
 <?=    \common\components\MyLinkPager::widget([
     'pagination' => $pagination,
-    'lastPageLabel'=>false,
-    'firstPageLabel'=>false,
+    'lastPageLabel'=>"尾页",
+    'firstPageLabel'=>"首页",
     'prevPageLabel' => '上一页',
     'nextPageLabel' => '下一页',
     'nextPageCssClass' => '',
     'prevPageCssClass' => '',
-    'maxButtonCount'=>0,
-    'options'=>['class'=>'page']
+    'maxButtonCount'=>6,
+    'options'=>['class'=>'pages']
 
 ]) ?>

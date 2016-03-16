@@ -7,13 +7,13 @@
  */
 
 echo \yii\widgets\Breadcrumbs::widget([
-                'homeLink'=>['label'=>'首页','url'=>yii\helpers\Url::to(['site/index']),'template'=>'当前位置：{link}'],
+                'homeLink'=>['label'=>'首页','url'=>yii\helpers\Url::to(['site/index']),'template'=>'<div class="weizhi-zt">您现在的位置：{link}'],
                 'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-                'options' => ['class' => 'dqwz'],
+                'options' => ['class' => 'weizhi'],
                 'tag' => 'div',
                 'itemTemplate' => ' &gt; {link}',
                 'activeItemTemplate' => ' &gt; {link}',
-            ])
+            ])."</div>";
 
 ?>
 

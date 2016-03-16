@@ -12,6 +12,7 @@ use Yii;
 class ResetPasswordForm extends Model
 {
     public $password;
+    public $repassword;
 
     /**
      * @var \common\models\User
@@ -33,7 +34,7 @@ class ResetPasswordForm extends Model
         }
         $this->_user = User::findByPasswordResetToken($token);
         if (!$this->_user) {
-            throw new InvalidParamException('Wrong password reset token.');
+            throw new InvalidParamException('重置密码指令不对或已过期.');
         }
         parent::__construct($config);
     }
@@ -45,6 +46,8 @@ class ResetPasswordForm extends Model
     {
         return [
             ['password', 'required'],
+            ['repassword', 'required',],
+            [['repassword'], 'compare','compareAttribute'=>'password','message'=>'2次密码不一致'],
             ['password', 'string', 'min' => 6],
         ];
     }

@@ -2,7 +2,7 @@
 namespace backend\controllers;
 
 use backend\models\Admin;
-use common\models\LoginForm;
+use backend\models\LoginForm;
 
 use Yii;
 use yii\db\Query;

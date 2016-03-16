@@ -13,9 +13,8 @@ use yii\web\NotFoundHttpException;
  */
 class NewsController extends Controller
 {
-    public $zixunzhongxinID = 7;
-    
-    public function actionIndex($cid = ''){
+   
+    public function actionIndex($cid = 1){
         $allCategory = Category::find()->asArray()->all();
         $arrayCategoryIdName = ArrayHelper::map($allCategory, 'id', 'name');
         $arrSubCat = Category::getArraySubCatalogId($cid, $allCategory);
@@ -27,15 +26,11 @@ class NewsController extends Controller
         $query = News::find()->where($where);
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'pagination' => ['defaultPageSize' => Yii::$app->params['defaultPageSizeProduct']],
+            'pagination' => ['defaultPageSize' => 8],
             'sort' => ['defaultOrder' => ['created_at' => SORT_DESC]],
         ]);
-        $renderFile = "index";
-        //渲染资讯中心不同的视图
-        if($cid == $this->zixunzhongxinID){
-            $renderFile = "zixunzhongxin";
-        }
-        return $this->render($renderFile, [
+        
+        return $this->render('index', [
             'models' => $dataProvider->getModels(),
             'pagination' => $dataProvider->pagination,
             'cid' => $cid,

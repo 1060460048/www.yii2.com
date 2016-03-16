@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $model common\models\Video */
 
 $this->title = '修改: ' . ' ' . $model->title;
-$this->params['breadcrumbs'][] = ['label' => '视频管理', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => '微课管理', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = '修改';
 ?>

@@ -20,6 +20,6 @@ class JqueryAsset extends AssetBundle
     public $css = [
     ];
     public $js = [
-        'statics/js/jquery-1.11.3.min.js',
+        'statics/js/jquery-1.8.3.min.js',
     ];
 }

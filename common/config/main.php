@@ -1,6 +1,6 @@
 <?php
 return [
-    'name' => '网站后台',
+    'name' => '简扬教育',
     'timeZone' => 'Asia/Shanghai',
     'language' => 'zh-CN',
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',

@@ -59,8 +59,8 @@ use Yii;
 
 class Status
 {
-    const STATUS_INACTIVE = 0;
     const STATUS_ACTIVE = 1;
+    const STATUS_INACTIVE = 0;
     const STATUS_DELETED = -1;
     const STATUS_REC = 3;
 
@@ -79,7 +79,7 @@ class Status
     {
         $data = [
             self::STATUS_ACTIVE => "显示",
-            self::STATUS_INACTIVE => "隐藏",
+            self::STATUS_INACTIVE => "禁用",
             self::STATUS_DELETED => "删除",
             self::STATUS_REC => "推荐",
         ];

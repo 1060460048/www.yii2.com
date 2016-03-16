@@ -18,6 +18,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
     <?php echo $form->field($model, 'imageFile')->fileInput() ?>
+    <?php if(!$model->isNewRecord){echo Html::img($model->thumb,['style'=>'width:80px;height:80px;']);} ?>
 
     <?php //$form->field($model, 'keyword')->textInput(['maxlength' => true]) ?>
 

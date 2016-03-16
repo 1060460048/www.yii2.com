@@ -59,8 +59,8 @@ class MyLinkPager extends LinkPager{
             $buttons[] = $this->renderPageButton($lastPageLabel, $pageCount - 1, $this->lastPageCssClass, $currentPage >= $pageCount - 1, false);
         }
        
-        return Html::tag('ul', implode("\n", $buttons), $this->options);
-        //return Html::tag('div', implode("\n", $buttons), $this->options);
+//        return Html::tag('ul', implode("\n", $buttons), $this->options);
+        return Html::tag('div', implode("\n", $buttons), $this->options);
     }
     
     protected function renderPageButton($label, $page, $class, $disabled, $active)
@@ -71,14 +71,14 @@ class MyLinkPager extends LinkPager{
         }
         if ($disabled) {
             Html::addCssClass($options, $this->disabledPageCssClass);
-            return Html::tag('li', Html::tag('span', $label), $options);
-            //return Html::tag('a', Html::tag('span', $label), $options);
+//            return Html::tag('li', Html::tag('span', $label), $options);
+            return Html::tag('a', Html::tag('span', $label), $options);
         }
         $linkOptions = $this->linkOptions;
         $linkOptions['data-page'] = $page;
-        return Html::tag('li', Html::a($label, $this->pagination->createUrl($page), $linkOptions), $options);
+//        return Html::tag('li', Html::a($label, $this->pagination->createUrl($page), $linkOptions), $options);
 
-        //return Html::a($label, $this->pagination->createUrl($page), $linkOptions);
+        return Html::a($label, $this->pagination->createUrl($page), $linkOptions);
     }
     
 }
