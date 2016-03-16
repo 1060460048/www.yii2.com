@@ -86,7 +86,10 @@ $.each(data,function(index,item){
     str = str + "利润：" + item.lirun + "元<br>";
 });
 
-
+[
+    'class' => 'yii\grid\ActionColumn',
+    'template' => '{view}{update}{delete}',
+],
 
 /*
  * 在线客服QQ
@@ -218,6 +221,22 @@ $query = news::find()
 ->orderBy(new \yii\db\Expression('rand()'))
 ->limit(2)->all();
 
+['password', 'required',],
+['repassword', 'required',],
+[['repassword'], 'compare','compareAttribute'=>'password','message'=>'2次密码不一致'],
+['password', 'string', 'min' => 6],
+
+//Mysql查询重复值
+//查出哪个值重复了
+SELECT `word`,count(`word`) as count FROM `lmy_badwords` GROUP BY `word` HAVING count(`word`) >1 ORDER BY count DESC
+//但是要一次查询到重复字段的id值，就必须使用子查询了，于是使用下面的语句。
+SELECT `id`,`word` 
+FROM `lmy_badwords` 
+WHERE `word` in ( 
+   SELECT `word` 
+   FROM `lmy_badwords` 
+   GROUP BY `word` HAVING count(`word`) >1
+);
 /*
  * 百度地图
  */
@@ -422,3 +441,30 @@ http://api.map.baidu.com/lbsapi/creatmap/
         return $this->hasMany(Images::className(), ['item_id' => 'id'])->where(['item'=>1])->orderBy(['sort_order' => SORT_ASC]);
     }
     <!-- 批量删除图片 模型页面 -->
+
+    //判断移动端
+     <script type="text/javascript">
+   var isMobile = {  
+        Android: function() {  
+            return navigator.userAgent.match(/Android/i) ? true : false;  
+        },  
+        BlackBerry: function() {  
+            return navigator.userAgent.match(/BlackBerry/i) ? true : false;  
+        },  
+        iOS: function() {  
+            return navigator.userAgent.match(/iPhone|iPod/i) ? true : false;  
+        },  
+        Windows: function() {  
+            return navigator.userAgent.match(/IEMobile/i) ? true : false;  
+        },  
+        any: function() {  
+            return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Windows());  
+        },
+        iPad :function(){
+            return navigator.userAgent.match(/iPad/i)? true : false;
+        }
+    };// end agent judge
+   if(isMobile.any()|| isMobile.iPad()){
+      location.href = '/minisite/Campaigns/2015/levinhybrid/m';
+   };
+</script>
