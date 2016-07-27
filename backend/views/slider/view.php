@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('删除', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => '确定要删除吗?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -28,7 +28,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'place',
+            [
+                'attribute' => 'place',
+                'value' => $model->getplace($model->place),
+            ],
             'thumb',
             'intro:ntext',
             'url:url',

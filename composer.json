@@ -35,8 +35,7 @@
         "yiisoft/yii2-faker": "*"
     },
     "config": {
-        "process-timeout": 1800,
-        "secure-http": false
+        "process-timeout": 1800
     },
     "extra": {
         "asset-installer-paths": {
@@ -47,7 +46,7 @@
     "repositories": {
         "packagist": {
             "type": "composer",
-            "url": "http://packagist.phpcomposer.com"
+            "url": "https://packagist.phpcomposer.com"
         }
     }
 }

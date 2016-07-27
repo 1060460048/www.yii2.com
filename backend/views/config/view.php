@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php //echo Html::a('删除', ['delete', 'id' => $model->id], [
             //'class' => 'btn btn-danger',
             //'data' => [
-            //    'confirm' => 'Are you sure you want to delete this item?',
+            //    'confirm' => '确定要删除吗?',
             //    'method' => 'post',
             //],
         //]) ?>

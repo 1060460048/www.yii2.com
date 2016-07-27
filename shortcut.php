@@ -47,12 +47,76 @@ Yii::$app->request->referrer;
  */
 Yii::$app->request->csrfToken;
 
+
+
+
+
+
+
+const STATUS_DELETED = -1;
+const STATUS_XIADAN = 0;
+const STATUS_ZHIFU = 1;
+const STATUS_WANCHENG = 2;
+const STATUS_PINGJIA = 3;
+
+public static function labels($id = null)
+{
+    $data = [
+        self::STATUS_DELETED => "订单已取消",
+        self::STATUS_XIADAN => "订单已提交",
+        self::STATUS_ZHIFU => "订单已支付",
+        self::STATUS_WANCHENG => "商家已完成",
+        self::STATUS_PINGJIA => "客户已评价",
+    ];
+
+    if ($id !== null && isset($data[$id])) {
+        return $data[$id];
+    } else {
+        return $data;
+    }
+}
+
+public function getLabel($id)
+{
+    $labels = self::labels();
+    return isset($labels[$id]) ? $labels[$id] : null;
+}
+
+
+/*
+ * activeform
+ */
+<?php $form = \yii\widgets\ActiveForm::begin(['id'=>'bakncard-form']); ?>
+
+<?php echo $form->field($model, 'zhifubaozhanghao',['options'=>['class'=>'form-group']])->textInput(['class'=>'form-control input-lg','placeholder'=>'支付宝账号'])->label(false); ?>
+<?php echo $form->field($model, 'zhifubaoxingming',['options'=>['class'=>'form-group']])->textInput(['class'=>'form-control input-lg','placeholder'=>'输入支付宝姓名'])->label(false); ?>
+
+
+<?php \yii\widgets\ActiveForm::end(); ?>
+
+
+
 /*
  * 改动 gridview 按钮组
  */
 
- ['class' => 'yii\grid\ActionColumn','template' => '{view} {update}',],
+['class' => 'yii\grid\ActionColumn','template' => '{view} {update}',],
+['class' => 'yii\grid\ActionColumn',
+    'template' => '{view} {update} {delete}',
+    'buttons' => [
 
+        'update' => function ($url, $model, $key) {
+            $options = [
+                'title' => Yii::t('yii', 'Update'),
+                'aria-label' => Yii::t('yii', 'Update'),
+                'data-pjax' => '0',
+            ];
+            $url = Yii::$app->urlManager->createUrl(['news/update','id'=>$model->id,'category_id'=>$model->category_id]);
+            return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, $options);
+        },
+    ]
+
+],
 //弹出 筛选提示
 ['class' => 'form-control', 'prompt' => Yii::t('app', 'Please Filter')]
 
@@ -162,6 +226,12 @@ if(isset($_GET['adapter']) && $_GET['adapter'] == "pc"){
         }
     }
 }
+
+gridview column width:
+[
+    'attribute'=>'phone',
+    'contentOptions'=>['style'=>'width: 100px;'],
+],
 
 /*
  *ajax post
@@ -468,3 +538,84 @@ http://api.map.baidu.com/lbsapi/creatmap/
       location.href = '/minisite/Campaigns/2015/levinhybrid/m';
    };
 </script>
+
+
+<script>
+$(function(){
+    $("#vip").hide();
+    var num = $("#Dianka_type").val();
+    if(num == 1){
+        $("#vip").show();
+    }
+    $("#Dianka_type").change(function(){
+        var num = $("#Dianka_type").val();
+        if(num == 1){
+            $("#vip").show();
+        }
+    });
+});
+</script>
+
+/*
+ * 判断是否是checkbox 选中
+ */
+ <script>
+    if($("#youhuiquan-select").is(":checked") == true){
+        $("#show-youhuiquan").show();
+    }else{
+        $("#show-youhuiquan").hide();
+    }
+
+$("#show-youhuiquan").prop("checked", false);
+ </script>
+/*
+ * js判断手机号码格式
+
+ */
+ <script>
+//检测电话号码格式
+            function checkphone(){
+                var str = $("input[name='mobile']").val();
+                var re1 = /^(13|14|15|17|18)[0-9]{9}$/;
+                if (re1.test(str)) {
+                    var flag = false;
+                    //判断号码是否存在
+                    $.ajax({
+                        type:"POST",
+                        url:"/findpass/checkphone",
+                        data:{phonenum:str},
+                        dataType: "json",
+                        async:false,
+                        success: function(data){
+                            if(data.code == "1"){
+                                flag = true; //设置可否点击状态
+                            }else{
+                                flag = false;
+                                alert('您输入的手机号码不存在');
+                            }
+                        }
+                    });
+                    
+                    
+                    return flag;
+                }else{
+                    alert("手机号码输入错误！");
+                    $("input[name='mobile']").focus();
+                    return false;
+                }
+            }
+
+
+ </script>
+
+//正则表达式匹配内容中的图片
+$ext = 'jpg|jpeg|gif|png|bmp';
+preg_match_all("/src=([\"|']?)([^ \"'>]+\.($ext))\\1/i", $model->content, $matches);
+if ($matches && isset($matches[2])) {
+    $imgs = $matches[2];
+    
+
+foreach($imgs as $k=>$v):
+?>
+<img src="<?= $v; ?>"/>
+<?php endforeach;} ?>

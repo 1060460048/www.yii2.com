@@ -26,7 +26,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'beianhao')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'tongji')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'tongji')->textarea(['rows' => 6,'placeholder'=>'可以把第三方获取的统计代码贴在这里']) ?>
+
 
     <?php echo $form->field($model, 'n1')->textarea(['maxlength' => true]) ?>
 

@@ -13,13 +13,18 @@ use yii\web\AssetBundle;
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
  */
-class JqueryAsset extends AssetBundle
+class JplayerAsset extends AssetBundle
 {
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
+        'statics/jplayer/blue.monday/css/jplayer.blue.monday.min.css'
     ];
     public $js = [
-        'statics/js/jquery-1.11.3.min.js',
+        'statics/jplayer/jquery.jplayer.min.js',
+    ];
+    public $depends = [
+        //'frontend\assets\JqueryAsset',
+        'frontend\assets\AppAsset',
     ];
 }
