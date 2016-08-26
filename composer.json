@@ -26,7 +26,8 @@
         "kartik-v/yii2-widget-datepicker": "@dev",
         "mongosoft/yii2-upload-behavior": "*",
         "kop/yii2-scroll-pager": "dev-master",
-        "kartik-v/yii2-widget-fileinput": "1.0.4"
+        "kartik-v/yii2-widget-fileinput": "1.0.4",
+        "kartik-v/yii2-export": "@dev"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

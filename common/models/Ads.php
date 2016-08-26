@@ -44,8 +44,7 @@ class Ads extends \yii\db\ActiveRecord
     }
     public static function place(){
         return [
-            '首页横幅广告1（1170*90）',
-            '首页横幅广告2(1170*70)',
+            '首页抢券(640*252)',
         ];
     }
     public static function getPlace($k){
@@ -63,13 +62,11 @@ class Ads extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['place', 'thumb'], 'required'],
-            [['place', 'ord'], 'integer'],
-            [['intro'], 'string'],
-            [['updated_at', 'created_at'], 'safe'],
-            [['thumb', 'url'], 'string', 'max' => 100],
+            [['place'], 'required'],
+            [['place', 'status'], 'integer'],
+            [['updated_at', 'created_at','start_time','end_time'], 'safe'],
+            [['thumb', 'url','title'], 'string', 'max' => 100],
             [['imageFile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'gif, png, jpg'],
-            [['title'], 'string', 'max' => 200]
         ];
     }
 
@@ -83,9 +80,10 @@ class Ads extends \yii\db\ActiveRecord
             'place' => '位置',
             'thumb' => '图片',
             'title' => '标题',
-            'intro' => '简介',
             'url' => '网址',
-            'ord' => '排序,数字越小越靠前',
+            'start_time' => '开始时间',
+            'end_time' => '结束时间',
+            'status' => '状态',
             'imageFile' => '图片',
             'updated_at' => '修改时间',
             'created_at' => '添加时间',
@@ -116,5 +114,21 @@ class Ads extends \yii\db\ActiveRecord
         
         $this->imageFile = null;
         
+    }
+    
+    /*
+     * 获取广告信息
+     */
+    public static function getAd($place){
+        $ad = self::find()->where(['place'=>$place,'status'=>1])->one();
+        if($ad){
+            $now = time();
+            $start_time = $ad->start_time;
+            $end_time = $ad->end_time;
+            if($now > $start_time && $now < $end_time){
+                return $ad;
+            }
+        }
+        return false;
     }
 }

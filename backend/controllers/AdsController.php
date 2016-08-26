@@ -82,17 +82,17 @@ class AdsController extends Controller
                     $model->upload();
                 }
             }
-            if($model->ord == ""){
-                $model->ord = 0;
-            }
+            $model->start_time = strtotime($model->start_time);
+            $model->end_time = strtotime($model->end_time);
             if($model->save()){
                 return $this->redirect(['view', 'id' => $model->id]);
+            }else{
+                var_dump($model);
             }
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
-        }
+        } 
+        return $this->render('create', [
+            'model' => $model,
+        ]);
     }
 
     /**
@@ -112,10 +112,14 @@ class AdsController extends Controller
                     $model->upload();
                 }
             }
+            $model->start_time = strtotime($model->start_time);
+            $model->end_time = strtotime($model->end_time);
             if($model->save()){
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         }else {
+            $model->start_time = date("Y-m-d H:i",$model->start_time);
+            $model->end_time = date("Y-m-d H:i",$model->end_time);
             return $this->render('update', [
                 'model' => $model,
             ]);

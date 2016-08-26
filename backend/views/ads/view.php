@@ -27,14 +27,24 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'place',
+            [
+                'attribute'=>'place',
+                'value'=>$model->getPlace($model->place),
+            ],
+            [
+                'attribute'=>'thumb',
+                'format'=>'html',
+                'value'=>'<img src="'.$model->thumb.'" />',
+            ],
             'thumb',
             'title',
-            'intro:ntext',
+            //'intro:ntext',
             'url:url',
-            'ord',
-            'updated_at',
-            'created_at',
+            //'ord',
+            'start_time:datetime',
+            'end_time:datetime',
+            'updated_at:datetime',
+            'created_at:datetime',
         ],
     ]) ?>
 

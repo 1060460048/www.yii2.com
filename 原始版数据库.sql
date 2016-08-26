@@ -56,26 +56,24 @@ INSERT INTO `lmy_admin` (`id`, `username`, `auth_key`, `password_hash`, `passwor
 --
 
 CREATE TABLE IF NOT EXISTS `lmy_ads` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL,
   `place` int(11) NOT NULL,
+  `title` varchar(200) DEFAULT NULL COMMENT '广告名',
   `thumb` varchar(100) NOT NULL,
-  `title` varchar(200) DEFAULT NULL COMMENT '大标题',
-  `intro` text,
   `url` varchar(100) DEFAULT NULL,
-  `ord` int(11) DEFAULT '100' COMMENT '默认100，越小越靠前',
+  `start_time` int(11) DEFAULT NULL COMMENT '大标题',
+  `end_time` int(11) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL COMMENT '默认100，越小越靠前',
   `updated_at` int(11) DEFAULT NULL,
-  `created_at` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+  `created_at` int(11) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- 转存表中的数据 `lmy_ads`
 --
 
-INSERT INTO `lmy_ads` (`id`, `place`, `thumb`, `title`, `intro`, `url`, `ord`, `updated_at`, `created_at`) VALUES
-(1, 0, '/upload/ads/2015123111251277261.jpg', NULL, NULL, 'http://www.qq.com', 1, 1451532337, 0),
-(2, 0, '/upload/ads/2015123111260855745.jpg', NULL, NULL, 'http://www.qq.com', 3, 1451532368, 0);
-
+INSERT INTO `lmy_ads` (`id`, `place`, `title`, `thumb`, `url`, `start_time`, `end_time`, `status`, `updated_at`, `created_at`) VALUES
+(1, 0, '首页优惠券抢购广告', '/upload/ads/2016080403454056191.jpg', '/user/coupon-get', 1470296400, 1472631120, 1, 1470298755, 1470296740);
 -- --------------------------------------------------------
 
 --

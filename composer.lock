@@ -4,25 +4,25 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "7a30b957a4f1016ff86dff576de67510",
-    "content-hash": "55539314cb49b218f211426ceb775402",
+    "hash": "6c0554cebf43fea0ce320c68db3c1583",
+    "content-hash": "817cbb6d618c8136af102317905294b2",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
-            "version": "v3.3.5",
+            "version": "v3.3.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "16b48259a62f576e52c903c476bd42b90ab22482"
+                "reference": "0b9c4a4007c44201dce9a6cc1a38407005c26c86"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/16b48259a62f576e52c903c476bd42b90ab22482",
-                "reference": "16b48259a62f576e52c903c476bd42b90ab22482",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/0b9c4a4007c44201dce9a6cc1a38407005c26c86",
+                "reference": "0b9c4a4007c44201dce9a6cc1a38407005c26c86",
                 "shasum": ""
             },
             "require": {
-                "bower-asset/jquery": ">=1.9.1"
+                "bower-asset/jquery": ">=1.9.1,<=3"
             },
             "type": "bower-asset-library",
             "extra": {
@@ -364,16 +364,16 @@
         },
         {
             "name": "ezyang/htmlpurifier",
-            "version": "v4.7.0",
+            "version": "v4.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ezyang/htmlpurifier.git",
-                "reference": "ae1828d955112356f7677c465f94f7deb7d27a40"
+                "reference": "d0c392f77d2f2a3dcf7fcb79e2a1e2b8804e75b2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ezyang/htmlpurifier/zipball/ae1828d955112356f7677c465f94f7deb7d27a40",
-                "reference": "ae1828d955112356f7677c465f94f7deb7d27a40",
+                "url": "https://packagist.phpcomposer.com/files/ezyang/htmlpurifier/d0c392f77d2f2a3dcf7fcb79e2a1e2b8804e75b2.zip",
+                "reference": "d0c392f77d2f2a3dcf7fcb79e2a1e2b8804e75b2",
                 "shasum": ""
             },
             "require": {
@@ -404,7 +404,7 @@
             "keywords": [
                 "html"
             ],
-            "time": "2015-08-05 01:03:42"
+            "time": "2016-07-16 12:58:58"
         },
         {
             "name": "imagine/imagine",
@@ -460,16 +460,16 @@
         },
         {
             "name": "kartik-v/bootstrap-fileinput",
-            "version": "v4.3.1",
+            "version": "v4.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/bootstrap-fileinput.git",
-                "reference": "32b0ccb2562b9c83f12222ddd1406986a45450d1"
+                "reference": "8c14423e41cfe6c6e0c1935a6c31a1136240d5d9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/bootstrap-fileinput/zipball/32b0ccb2562b9c83f12222ddd1406986a45450d1",
-                "reference": "32b0ccb2562b9c83f12222ddd1406986a45450d1",
+                "url": "https://packagist.phpcomposer.com/files/kartik-v/bootstrap-fileinput/8c14423e41cfe6c6e0c1935a6c31a1136240d5d9.zip",
+                "reference": "8c14423e41cfe6c6e0c1935a6c31a1136240d5d9",
                 "shasum": ""
             },
             "type": "library",
@@ -509,7 +509,115 @@
                 "progress",
                 "upload"
             ],
-            "time": "2016-02-28 02:23:49"
+            "time": "2016-07-09 12:56:05"
+        },
+        {
+            "name": "kartik-v/yii2-export",
+            "version": "v1.2.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/yii2-export.git",
+                "reference": "2a77907a7eb6885573ca3871241e3394b33e39ea"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://packagist.phpcomposer.com/files/kartik-v/yii2-export/2a77907a7eb6885573ca3871241e3394b33e39ea.zip",
+                "reference": "2a77907a7eb6885573ca3871241e3394b33e39ea",
+                "shasum": ""
+            },
+            "require": {
+                "kartik-v/yii2-grid": "~3.0",
+                "phpoffice/phpexcel": "~1.8.0"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.2.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "kartik\\export\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "A library to export server/db data in various formats (e.g. excel, html, pdf, csv etc.)",
+            "homepage": "https://github.com/kartik-v/yii2-export",
+            "keywords": [
+                "OpenXML",
+                "csv",
+                "export",
+                "extension",
+                "html",
+                "json",
+                "pdf",
+                "spreadsheet",
+                "text",
+                "widget",
+                "xls",
+                "xlsx",
+                "yii2"
+            ],
+            "time": "2016-04-18 16:54:14"
+        },
+        {
+            "name": "kartik-v/yii2-grid",
+            "version": "v3.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/yii2-grid.git",
+                "reference": "fe29bcf8f46bde42aa3eb067851b38dc07cd4d8a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://packagist.phpcomposer.com/files/kartik-v/yii2-grid/fe29bcf8f46bde42aa3eb067851b38dc07cd4d8a.zip",
+                "reference": "fe29bcf8f46bde42aa3eb067851b38dc07cd4d8a",
+                "shasum": ""
+            },
+            "require": {
+                "kartik-v/yii2-krajee-base": "~1.7"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "kartik\\grid\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "Yii 2 GridView on steroids. Various enhancements and utilities for the Yii 2.0 GridView widget.",
+            "homepage": "https://github.com/kartik-v/yii2-grid",
+            "keywords": [
+                "extension",
+                "grid",
+                "widget",
+                "yii2"
+            ],
+            "time": "2016-04-09 20:31:20"
         },
         {
             "name": "kartik-v/yii2-krajee-base",
@@ -568,12 +676,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-widget-datepicker.git",
-                "reference": "52606c8764a174aa0d5e6483ed811f617c74ee4e"
+                "reference": "e589d2463b2a3077e07364b48a2eb7dc399ec49b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-widget-datepicker/zipball/52606c8764a174aa0d5e6483ed811f617c74ee4e",
-                "reference": "52606c8764a174aa0d5e6483ed811f617c74ee4e",
+                "url": "https://packagist.phpcomposer.com/files/kartik-v/yii2-widget-datepicker/e589d2463b2a3077e07364b48a2eb7dc399ec49b.zip",
+                "reference": "e589d2463b2a3077e07364b48a2eb7dc399ec49b",
                 "shasum": ""
             },
             "require": {
@@ -582,7 +690,7 @@
             "type": "yii2-extension",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.3.x-dev"
+                    "dev-master": "1.4.x-dev"
                 }
             },
             "autoload": {
@@ -614,7 +722,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2016-04-08 10:42:51"
+            "time": "2016-07-23 15:29:51"
         },
         {
             "name": "kartik-v/yii2-widget-datetimepicker",
@@ -721,12 +829,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kop/yii2-scroll-pager.git",
-                "reference": "3f8972f8a8e9998bfaee660507159a8a58e1bacc"
+                "reference": "9b9727ce441fbfc487044535ab6ce0b7694d810b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kop/yii2-scroll-pager/zipball/3f8972f8a8e9998bfaee660507159a8a58e1bacc",
-                "reference": "3f8972f8a8e9998bfaee660507159a8a58e1bacc",
+                "url": "https://packagist.phpcomposer.com/files/kop/yii2-scroll-pager/9b9727ce441fbfc487044535ab6ce0b7694d810b.zip",
+                "reference": "9b9727ce441fbfc487044535ab6ce0b7694d810b",
                 "shasum": ""
             },
             "require": {
@@ -761,7 +869,7 @@
                 "yii",
                 "yii2"
             ],
-            "time": "2016-04-03 01:27:47"
+            "time": "2016-07-06 19:56:33"
         },
         {
             "name": "kucha/ueditor",
@@ -850,17 +958,74 @@
             "time": "2015-08-27 15:48:02"
         },
         {
-            "name": "qiniu/php-sdk",
-            "version": "v7.0.7",
+            "name": "phpoffice/phpexcel",
+            "version": "1.8.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/qiniu/php-sdk.git",
-                "reference": "50e3375a7044d5f94de9570ce5966c1b6174bda3"
+                "url": "https://github.com/PHPOffice/PHPExcel.git",
+                "reference": "372c7cbb695a6f6f1e62649381aeaa37e7e70b32"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/qiniu/php-sdk/zipball/50e3375a7044d5f94de9570ce5966c1b6174bda3",
-                "reference": "50e3375a7044d5f94de9570ce5966c1b6174bda3",
+                "url": "https://packagist.phpcomposer.com/files/PHPOffice/PHPExcel/372c7cbb695a6f6f1e62649381aeaa37e7e70b32.zip",
+                "reference": "372c7cbb695a6f6f1e62649381aeaa37e7e70b32",
+                "shasum": ""
+            },
+            "require": {
+                "ext-xml": "*",
+                "ext-xmlwriter": "*",
+                "php": ">=5.2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "PHPExcel": "Classes/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL"
+            ],
+            "authors": [
+                {
+                    "name": "Maarten Balliauw",
+                    "homepage": "http://blog.maartenballiauw.be"
+                },
+                {
+                    "name": "Mark Baker"
+                },
+                {
+                    "name": "Franck Lefevre",
+                    "homepage": "http://blog.rootslabs.net"
+                },
+                {
+                    "name": "Erik Tilt"
+                }
+            ],
+            "description": "PHPExcel - OpenXML - Read, Create and Write Spreadsheet documents in PHP - Spreadsheet engine",
+            "homepage": "http://phpexcel.codeplex.com",
+            "keywords": [
+                "OpenXML",
+                "excel",
+                "php",
+                "spreadsheet",
+                "xls",
+                "xlsx"
+            ],
+            "time": "2015-05-01 07:00:55"
+        },
+        {
+            "name": "qiniu/php-sdk",
+            "version": "v7.0.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/qiniu/php-sdk.git",
+                "reference": "d1bca450b56d85beb7ba21f374a47bfeb59c288b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://packagist.phpcomposer.com/files/qiniu/php-sdk/d1bca450b56d85beb7ba21f374a47bfeb59c288b.zip",
+                "reference": "d1bca450b56d85beb7ba21f374a47bfeb59c288b",
                 "shasum": ""
             },
             "require": {
@@ -898,27 +1063,27 @@
                 "sdk",
                 "storage"
             ],
-            "time": "2016-01-11 13:20:52"
+            "time": "2016-07-19 06:18:08"
         },
         {
             "name": "swiftmailer/swiftmailer",
-            "version": "v5.4.2",
+            "version": "v5.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/swiftmailer/swiftmailer.git",
-                "reference": "d8db871a54619458a805229a057ea2af33c753e8"
+                "reference": "4cc92842069c2bbc1f28daaaf1d2576ec4dfe153"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/d8db871a54619458a805229a057ea2af33c753e8",
-                "reference": "d8db871a54619458a805229a057ea2af33c753e8",
+                "url": "https://packagist.phpcomposer.com/files/swiftmailer/swiftmailer/4cc92842069c2bbc1f28daaaf1d2576ec4dfe153.zip",
+                "reference": "4cc92842069c2bbc1f28daaaf1d2576ec4dfe153",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
             "require-dev": {
-                "mockery/mockery": "~0.9.1,<0.9.4"
+                "mockery/mockery": "~0.9.1"
             },
             "type": "library",
             "extra": {
@@ -951,7 +1116,7 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2016-05-01 08:45:47"
+            "time": "2016-07-08 11:51:25"
         },
         {
             "name": "webcreate/jquery-ias",
@@ -995,20 +1160,20 @@
         },
         {
             "name": "yiisoft/yii2",
-            "version": "2.0.8",
+            "version": "2.0.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "53992b136b993e32ca7b6f399cf42b143f8685a6"
+                "reference": "2b75151ea60e1fd820046416eee2e89c3dda1133"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/53992b136b993e32ca7b6f399cf42b143f8685a6",
-                "reference": "53992b136b993e32ca7b6f399cf42b143f8685a6",
+                "url": "https://packagist.phpcomposer.com/files/yiisoft/yii2-framework/2b75151ea60e1fd820046416eee2e89c3dda1133.zip",
+                "reference": "2b75151ea60e1fd820046416eee2e89c3dda1133",
                 "shasum": ""
             },
             "require": {
-                "bower-asset/jquery": "2.2.*@stable | 2.1.*@stable | 1.11.*@stable",
+                "bower-asset/jquery": "2.2.*@stable | 2.1.*@stable | 1.11.*@stable | 1.12.*@stable",
                 "bower-asset/jquery.inputmask": "~3.2.2",
                 "bower-asset/punycode": "1.3.*",
                 "bower-asset/yii2-pjax": "~2.0.1",
@@ -1085,7 +1250,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2016-04-28 14:50:20"
+            "time": "2016-07-11 13:36:42"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
@@ -1234,16 +1399,16 @@
         },
         {
             "name": "yiisoft/yii2-jui",
-            "version": "2.0.5",
+            "version": "2.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-jui.git",
-                "reference": "37991d06ad952eead7bd5bb839c9a352d9b5e34a"
+                "reference": "843a2160cfe30f5c8b0cb2e9dbd8ee6bcf97e71d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-jui/zipball/37991d06ad952eead7bd5bb839c9a352d9b5e34a",
-                "reference": "37991d06ad952eead7bd5bb839c9a352d9b5e34a",
+                "url": "https://packagist.phpcomposer.com/files/yiisoft/yii2-jui/843a2160cfe30f5c8b0cb2e9dbd8ee6bcf97e71d.zip",
+                "reference": "843a2160cfe30f5c8b0cb2e9dbd8ee6bcf97e71d",
                 "shasum": ""
             },
             "require": {
@@ -1280,7 +1445,7 @@
                 "jQuery UI",
                 "yii2"
             ],
-            "time": "2016-03-17 03:53:41"
+            "time": "2016-07-22 22:26:59"
         },
         {
             "name": "yiisoft/yii2-swiftmailer",
@@ -1644,7 +1809,8 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "kartik-v/yii2-widget-datepicker": 20,
-        "kop/yii2-scroll-pager": 20
+        "kop/yii2-scroll-pager": 20,
+        "kartik-v/yii2-export": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

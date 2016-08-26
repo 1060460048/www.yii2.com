@@ -23,7 +23,6 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
             'id',
             [
                 'attribute'=>'place',
@@ -31,10 +30,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     return common\models\Ads::getPlace($model->place);
                 },
             ],
-            'place',
             'thumb',
             'title',
-            'intro:ntext',
+            //'intro:ntext',
             // 'url:url',
             // 'ord',
             // 'updated_at',

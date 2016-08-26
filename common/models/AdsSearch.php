@@ -18,8 +18,8 @@ class AdsSearch extends Ads
     public function rules()
     {
         return [
-            [['id', 'place', 'ord'], 'integer'],
-            [['thumb', 'title', 'intro', 'url', 'updated_at', 'created_at'], 'safe'],
+            [['id', 'place'], 'integer'],
+            [['thumb', 'title', 'url', 'updated_at', 'created_at'], 'safe'],
         ];
     }
 
@@ -58,14 +58,12 @@ class AdsSearch extends Ads
         $query->andFilterWhere([
             'id' => $this->id,
             'place' => $this->place,
-            'ord' => $this->ord,
             'updated_at' => $this->updated_at,
             'created_at' => $this->created_at,
         ]);
 
         $query->andFilterWhere(['like', 'thumb', $this->thumb])
             ->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'intro', $this->intro])
             ->andFilterWhere(['like', 'url', $this->url]);
 
         return $dataProvider;
